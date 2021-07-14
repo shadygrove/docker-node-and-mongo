@@ -43,6 +43,10 @@ Run Mongo DB on network
 $ docker run -it --rm -d -v mongodb:/data/db -v mongodb_config:/data/configdb -p 27017:27017 --network mongodb --name mongodb mongo
 ```
 
+## Docker Compose
+```
+$ docker-compose -f docker-compose.dev.yml up --build
+```
 
 ## Running App Locally
 To run the server:  
@@ -60,6 +64,18 @@ curl http://localhost:8000/test
 ```
 
 ### To Test Server w/ DB
+
+#### Get Notes
+```
+curl --request GET --url http://localhost:8000/notes
+```
+
+Endpoint for debug breakpoint
+```
+curl --request GET --url http://localhost:8000/foo
+```
+
+#### Save A Note
 ```
 curl --request POST --url http://localhost:8000/notes --header 'content-type: application/json' --data '{ "name": "this is a note", "text": "this is a note that I wanted to take while I was working on writing a blog post.", "owner": "peter" }'
 ```
