@@ -1,20 +1,17 @@
 # syntax=docker/dockerfile:1
+FROM node:14.15.4 as base
 
-FROM node:12.18.1
+WORKDIR /code
 
-ENV NODE_ENV=production
+COPY package.json package.json
+COPY package-lock.json package-lock.json
 
-WORKDIR /app
-
-# Copy in our dependency definitions into image
-# The last item in array is the destination path on the image
-COPY ["package.json", "package-lock.json*", "./"]
-
-# Install dependencies on image
-RUN npm install --production
-
-# Copy our source files into the image
+FROM base as test
+RUN npm ci
 COPY . .
+CMD [ "npm", "run", "test" ]
 
-# What to execute when container is booted up
+FROM base as prod
+RUN npm ci --production
+COPY . .
 CMD [ "node", "server.js" ]

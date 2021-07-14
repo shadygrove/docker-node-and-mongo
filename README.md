@@ -98,3 +98,10 @@ Expected Response:
     }
 }
 ```
+
+# Test Setup
+```
+$ docker build -t mb/node-docker --target test .
+
+$ docker run -it --rm -p 8000:8000 mb/node-docker
+```
