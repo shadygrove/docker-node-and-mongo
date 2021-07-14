@@ -48,6 +48,11 @@ $ docker run -it --rm -d -v mongodb:/data/db -v mongodb_config:/data/configdb -p
 $ docker-compose -f docker-compose.dev.yml up --build
 ```
 
+#### Compose To Run Tests
+```
+$ docker-compose -f docker-compose.dev.yml run notes npm run test
+```
+
 ## Running App Locally
 To run the server:  
 `node server.js`
