@@ -46,9 +46,15 @@ $ docker run -it --rm -d -v mongodb:/data/db -v mongodb_config:/data/configdb -p
 ## Docker Compose
 ```
 $ docker-compose -f docker-compose.dev.yml up --build
+( --build means build images before starting containers )
 ```
 
 #### Compose To Run Tests
+```
+$ docker-compose -f docker-compose.dev.yml run notes npm run test
+```
+
+#### Compose To Run App
 ```
 $ docker-compose -f docker-compose.dev.yml run notes npm run test
 ```
