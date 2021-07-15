@@ -2,6 +2,11 @@
 
 Based on [Docker Node tutorial](https://docs.docker.com/language/nodejs/build-images/)  
 
+## Tips
+Remove Dangling images:
+```
+docker rmi $(docker images -f "dangling=true" -q)
+```
 
 ## Building Docker Image
 To build the Dockerfile and creat a Docker image:  
@@ -11,7 +16,7 @@ docker build --tag mb/node-docker .
 
 ## Running Docker Image
 ```
-docker run --detach --publish 8000:8000 mb/node-docker --name jolly_wilbur
+docker run --name jolly_wilbur --detach --publish 8000:8000 mb/node-docker 
 ```
 (name is optional)
 
