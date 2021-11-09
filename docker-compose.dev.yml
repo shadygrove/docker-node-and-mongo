@@ -1,31 +1,43 @@
-version: '3.8'
+version: "3.8"
 
-services: 
-    # The notes service API
-    notes:
-        build:
-            context: .
-            target: prod
-        ports: 
-            - 8000:8000
-            - 9229:9229
-        environment: 
-            - SERVER_PORT=8000
-            - CONNECTIONSTRING=mongodb://mongo:27017/notes
-        volumes:
-            - ./:/app
-        command: npm run debug
-    # The mongo DB instance
-    mongo:
-        image: mongo:4.2.8
-        ports:
-            - 27017:27017
-        volumes:
-            - mongodb:/data/db
-            - mongodb_config:/data/configdb
+services:
+  # The TESTS build for notes service API
+  notes-test:
+    build:
+      context: .
+      target: test
+    ports:
+      - 8001:8000
+      - 8002:9229
+    environment:
+      - SERVER_PORT=8000
+      - CONNECTIONSTRING=mongodb://mongo:27017/notes
+    volumes:
+      - ./:/app
+    command: npm run test
+  # The notes service API
+  notes:
+    build:
+      context: .
+      target: prod
+    ports:
+      - 8000:8000
+      - 9229:9229
+    environment:
+      - SERVER_PORT=8000
+      - CONNECTIONSTRING=mongodb://mongo:27017/notes
+    volumes:
+      - ./:/app
+    command: npm run debug
+  # The mongo DB instance
+  mongo:
+    image: mongo:4.2.8
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb:/data/db
+      - mongodb_config:/data/configdb
 # Attach volumes for mongo
 volumes:
-    mongodb:
-    mongodb_config:
-
-        
+  mongodb:
+  mongodb_config:

@@ -127,13 +127,13 @@ $ docker-compose -f docker-compose.dev.yml up --build
 #### Compose To Run Tests
 
 ```
-$ docker-compose -f docker-compose.dev.yml run notes npm run test
+$ docker-compose -f docker-compose.dev.yml run notes-test npm run test
 ```
 
 #### Compose To Run App
 
 ```
-$ docker-compose -f docker-compose.dev.yml run notes npm run test
+$ docker-compose -f docker-compose.dev.yml run notes npm run start
 ```
 
 ## Testing The API
